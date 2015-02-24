@@ -71,7 +71,8 @@ en:
     save_success: 'Has been saved successfully'
     update: 'Update %{resource}'
     delete: 'Delete'
-    view: 'View'
+    view: 'View %{resource}'
+    page: 'Page %{resource}'
     delete confirmation: "Are you sure you wan't to delete?"
     is_true: 'Yes'
     is_false: 'No'
@@ -114,6 +115,7 @@ en:
     favorite: 'favorite'
     retweet: 'retweet'
     comment: 'comment'
+    pages: 'pages'
     publish: 'publish-to-%{location}'
     move_to_better: 'add-priority'
     move_to_worst: 'remove-priority'

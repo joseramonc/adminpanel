@@ -2,20 +2,20 @@ module Adminpanel
   module RestActions
     extend ActiveSupport::Concern
     included do
-      before_action :set_resource_instance,         only: [
-                                                          :show,
-                                                          :edit,
-                                                          :update,
-                                                          :destroy,
-                                                          :fb_choose_page,
-                                                          :fb_save_token,
-                                                          :fb_publish,
-                                                          :twitter_publish,
-                                                          :move_to_better,
-                                                          :move_to_worst
-                                                    ]
-      before_action :set_resource_collection,       only: [:index, :destroy]
-      before_action :set_relationship_collections,  only: [:new, :create, :edit, :update]
+      before_action :set_resource_instance, only: [
+                                              :show,
+                                              :edit,
+                                              :update,
+                                              :destroy,
+                                              :fb_choose_page,
+                                              :fb_save_token,
+                                              :fb_publish,
+                                              :twitter_publish,
+                                              :move_to_better,
+                                              :move_to_worst
+                                            ]
+      before_action :set_resource_collection,      only: [:index, :destroy]
+      before_action :set_relationship_collections, only: [:new, :create, :edit, :update]
     end
 
     def index
@@ -73,59 +73,59 @@ module Adminpanel
 
     private
 
-    def set_relationship_collections
-      @collections = {}
-      set_belongs_to_collections
-      set_has_many_collections
-    end
-
-    def set_belongs_to_collections
-      @model.relationships_of('belongs_to').each do |class_variable|
-        set_relationship(class_variable)
+      def set_relationship_collections
+        @collections = {}
+        set_belongs_to_collections
+        set_has_many_collections
       end
-    end
 
-    def set_has_many_collections
-      @model.relationships_of('has_many').each do |class_variable|
-        set_relationship(class_variable)
+      def set_belongs_to_collections
+        @model.relationships_of('belongs_to').each do |class_variable|
+          set_relationship(class_variable)
+        end
       end
-    end
 
-    def set_relationship(class_variable)
-      if class_variable.respond_to?("of_model")
-        @collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
-      else
-        @collections.merge!({"#{class_variable}" => class_variable.all})
+      def set_has_many_collections
+        @model.relationships_of('has_many').each do |class_variable|
+          set_relationship(class_variable)
+        end
       end
-    end
 
-    def merge_params
-      params.merge({model:             params[:model]})             if params[:model].present?
-      params.merge({model_name:        params[:model_name]})        if params[:model_name].present?
-      params.merge({belongs_request:   params[:belongs_request]})   if params[:belongs_request].present?
-      params.merge({currentcontroller: params[:currentcontroller]}) if params[:currentcontroller].present?
-    end
-
-    def whitelisted_params
-      resource = controller_name.singularize.to_sym
-      "#{resource}_params"
-    end
-
-    def set_resource_instance
-      @resource_instance = @model.find(params[:id])
-    end
-
-    def set_resource_collection
-      @collection = @model.all
-    end
-
-    def render_new format
-      format.html do
-        render 'adminpanel/templates/new'
+      def set_relationship(class_variable)
+        if class_variable.respond_to?("of_model")
+          @collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
+        else
+          @collections.merge!({"#{class_variable}" => class_variable.all})
+        end
       end
-      format.js do
-        render 'adminpanel/templates/new', locals: { resource: @resource_instance }
+
+      def merge_params
+        params.merge({model:             params[:model]})             if params[:model].present?
+        params.merge({model_name:        params[:model_name]})        if params[:model_name].present?
+        params.merge({belongs_request:   params[:belongs_request]})   if params[:belongs_request].present?
+        params.merge({currentcontroller: params[:currentcontroller]}) if params[:currentcontroller].present?
       end
-    end
+
+      def whitelisted_params
+        resource = controller_name.singularize.to_sym
+        "#{resource}_params"
+      end
+
+      def set_resource_instance
+        @resource_instance = @model.find(params[:id])
+      end
+
+      def set_resource_collection
+        @collection = @model.all
+      end
+
+      def render_new format
+        format.html do
+          render 'adminpanel/templates/new'
+        end
+        format.js do
+          render 'adminpanel/templates/new', locals: { resource: @resource_instance }
+        end
+      end
   end
 end

@@ -1,7 +1,8 @@
 include Adminpanel::RouterHelper
 
 Adminpanel::Engine.routes.draw do
-
+  resources :pages, path: I18n.t('routes.pages')
+  
   Adminpanel.displayable_resources.each do |resource|
     case resource
     when :analytics

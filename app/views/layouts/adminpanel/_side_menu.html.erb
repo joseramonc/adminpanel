@@ -4,10 +4,9 @@
       <h5>
         <%= current_user.name.humanize %>
       </h5>
-      <%= link_to(
-        current_user.role.name,
-        "#"
-      ) %>
+      <a href>
+        <%= current_user.role.name %>
+      </a>
     </div>
   <% end %>
   <div class="accordion">
@@ -34,5 +33,27 @@
         </div>
       <% end %>
     <% end %>
+
+    <% Adminpanel::Page.all.each do |page| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <%= link_to(
+            page_path(page),
+            data: {
+              no_transition_cache: true
+            },
+            class: "accordion-toggle accordion-navigation #{current_page?(page_path(page))} spinner-link"
+          ) do %>
+            <%= content_tag(
+              :i,
+              nil,
+              class: "fa fa-#{page.icon}"
+            ) %>
+            <%= page.name %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 </div>

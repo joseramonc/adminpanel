@@ -21,7 +21,11 @@ module Adminpanel
     end
 
     def is_current_section?(display_name)
-      display_name == params[:controller].classify.constantize.display_name ? 'active' : nil
+      current_page_class(display_name == params[:controller].classify.constantize.display_name)
+    end
+
+    def current_page_class(condition)
+      condition ? 'active' : :nil
     end
 
     def link_to_add_fields(name, f, association, hidden='not-hidden')
