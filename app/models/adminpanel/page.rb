@@ -7,7 +7,8 @@ module Adminpanel
     validates_presence_of :key
     validates_uniqueness_of :key
 
-    has_and_belongs_to_many :resources, join_table: :adminpanel_page_resources
+    has_many :components
+    has_and_belongs_to_many :resources, through: :components
 
     def icon
       ['dashboard', 'truck', 'trash'].sample

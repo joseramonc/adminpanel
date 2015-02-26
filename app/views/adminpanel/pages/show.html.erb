@@ -2,4 +2,7 @@
 
 Secciones
 
-<%= @resource_instance.name %>
+<% @resource_instance.components.each do |component| %>
+  <%= link_to component.content, component.link %>
+  <%= component.content %>
+<% end %>
