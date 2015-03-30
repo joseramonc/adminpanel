@@ -52,7 +52,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       flag:boolean
       quantity:integer
       date:datepicker
-      other_resource:has_many
+      other_resource:checkbox
       --no-skip-gallery
     )
     assert_file(
@@ -139,7 +139,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   def test_creating_a_categorization_resource
     run_generator %w(
       categorization
-      category:belongs_to
+      category:select
       product:belongs_to
     )
     assert_no_file 'app/controllers/adminpanel/categorizations_controller.rb'
