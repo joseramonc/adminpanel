@@ -13,7 +13,7 @@ module Adminpanel
                                               :fb_publish,
                                               :twitter_publish
                                             ]
-      before_action :set_resource_collection, only: [:index, :destroy]
+      before_action :set_resource_collection,      only: [:index, :destroy]
     end
 
     def index
@@ -77,36 +77,36 @@ module Adminpanel
 
     private
 
-    def set_resource_collection
-      @collection = @model.all
-    end
-
-    def set_resource_instance
-      if @model.respond_to? :friendly
-        @resource_instance ||= @model.friendly.find(params[:id])
-      else
-        @resource_instance ||= @model.find(params[:id])
+      def set_resource_collection
+        @collection = @model.all
       end
-    end
 
-    def merge_params
-      params.merge({model:           params[:model]})           if params[:model].present?
-      params.merge({model_name:      params[:model_name]})      if params[:model_name].present?
-      params.merge({belongs_request: params[:belongs_request]}) if params[:belongs_request].present?
-    end
-
-    def whitelisted_params
-      resource = controller_name.singularize.to_sym
-      "#{resource}_params"
-    end
-
-    def render_new(format)
-      format.html do
-        render 'adminpanel/templates/new'
+      def set_resource_instance
+        if @model.respond_to? :friendly
+          @resource_instance ||= @model.friendly.find(params[:id])
+        else
+          @resource_instance ||= @model.find(params[:id])
+        end
       end
-      format.js do
-        render 'adminpanel/templates/new'
+
+      def merge_params
+        params.merge({model:           params[:model]})           if params[:model].present?
+        params.merge({model_name:      params[:model_name]})      if params[:model_name].present?
+        params.merge({belongs_request: params[:belongs_request]}) if params[:belongs_request].present?
       end
-    end
+
+      def whitelisted_params
+        resource = controller_name.singularize.to_sym
+        "#{resource}_params"
+      end
+
+      def render_new(format)
+        format.html do
+          render 'adminpanel/templates/new'
+        end
+        format.js do
+          render 'adminpanel/templates/new'
+        end
+      end
   end
 end

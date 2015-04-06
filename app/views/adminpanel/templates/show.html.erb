@@ -1,5 +1,5 @@
 <% provide(:page_title, I18n.t('action.view', resource: @model.display_name.capitalize)) -%>
-<% breadcrumb_add(
+<%# breadcrumb_add(
   @model.collection_name,
   {
     controller: params[:controller],
