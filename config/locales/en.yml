@@ -70,8 +70,9 @@ en:
     save_success: 'Has been saved successfully'
     update: 'Update %{resource}'
     delete: 'Delete'
-    view: 'View'
-    delete_confirmation: "Are you sure you wan't to delete?"
+    view: 'View %{resource}'
+    page: 'Page %{resource}'
+    delete confirmation: "Are you sure you wan't to delete?"
     is_true: 'Yes'
     is_false: 'No'
   authentication:
@@ -113,6 +114,7 @@ en:
     favorite: 'favorite'
     retweet: 'retweet'
     comment: 'comment'
+    pages: 'pages'
     publish: 'publish-to-%{location}'
     move_to_position: 'move-position'
     new: 'new'

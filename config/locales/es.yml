@@ -83,6 +83,7 @@ es:
     submitting: 'Enviando...'
     update: 'Actualizar %{resource}'
     view: 'Ver %{resource}'
+    page: 'Página %{resource}'
   authentication:
     welcome: 'Bienvenido! Inicia Sesión'
     signin_error: 'Correo y/o Contraseña incorrecta.'
@@ -121,6 +122,7 @@ es:
     favorite: 'favorito'
     retweet: 'retweet'
     comment: 'comentar'
+    pages: 'paginas'
     publish: 'publicar-a-%{location}'
     facebook_page: 'pagina-en-facebook'
     new: 'nuevo'

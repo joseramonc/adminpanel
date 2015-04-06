@@ -1,0 +1,8 @@
+<% provide(:page_title, I18n.t('action.page', resource: @resource_instance.name)) -%>
+
+Secciones
+
+<% @resource_instance.components.each do |component| %>
+  <%= link_to component.content, component.link %>
+  <%= component.content %>
+<% end %>
