@@ -14,7 +14,6 @@ module Adminpanel
                                               :twitter_publish
                                             ]
       before_action :set_resource_collection,      only: [:index, :destroy]
-      before_action :set_relationship_collections, only: [:new, :create, :edit, :update]
     end
 
     def index
@@ -88,11 +87,17 @@ module Adminpanel
         else
           @resource_instance ||= @model.find(params[:id])
         end
+      end
 
       def merge_params
         params.merge({model:           params[:model]})           if params[:model].present?
         params.merge({model_name:      params[:model_name]})      if params[:model_name].present?
         params.merge({belongs_request: params[:belongs_request]}) if params[:belongs_request].present?
+      end
+
+      def whitelisted_params
+        resource = controller_name.singularize.to_sym
+        "#{resource}_params"
       end
 
       def render_new(format)

@@ -1,8 +1,17 @@
 <% provide(:page_title, I18n.t('action.page', resource: @resource_instance.name)) -%>
 
-Secciones
-
-<% @resource_instance.components.each do |component| %>
-  <%= link_to component.content, component.link %>
-  <%= component.content %>
-<% end %>
+<div class="row-fluid">
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+      <i class="fa fa-user-md"></i>
+      <h5><%= @resource_instance.name %></h5>
+    </div>
+    <div class="widget-body row-fluid">
+      <% @resource_instance.sections.each do |component| %>
+        <div class="span-12">
+          <%= link_to component.description, [:edit, component] %>
+        </div>
+      <% end %>
+    </div><!--/widget-body-->
+  </div> <!-- /widget -->
+</div>
