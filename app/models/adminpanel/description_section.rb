@@ -38,6 +38,10 @@ module Adminpanel
       ]
     end
 
+    def render
+      'desc.'
+    end
+
     protected
 
       def is_email?

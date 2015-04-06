@@ -1,4 +1,4 @@
-module Adminpan
+module Adminpanel
   class GallerySectionsController < ApplicationController
 
     private

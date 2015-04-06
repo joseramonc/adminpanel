@@ -8,8 +8,10 @@
     </div>
     <div class="widget-body row-fluid">
       <% @resource_instance.sections.each do |component| %>
-        <div class="span-12">
-          <%= link_to component.description, [:edit, component] %>
+        <div class="row-fluid">
+          <%= link_to [:edit, component] do %>
+            <%= component.render.html_safe %>
+          <% end %>
         </div>
       <% end %>
     </div><!--/widget-body-->
