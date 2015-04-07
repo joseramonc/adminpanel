@@ -6,17 +6,14 @@ module Adminpanel
 
     def render
       html = '
-      <div class="span-12">
-        <div id="myCarousel" class="carousel slide">
-          <ol class="carousel-indicators">'
-            sectionfiles.each_with_index do |sectionfile, index|
-              html << "<li data-target=\"#myCarousel\" data-slide-to=\"#{index}\">a</li>"
-            end
-          html << '</ol>'
+        <div id="myCarousel" class="carousel slide">'
+
           html << '<div class="carousel-inner">'
 
           sectionfiles.each_with_index do |sectionfile, index|
-            html << "<div class\"item\">
+            html << "<div class=\"item "
+            html << "active" if index == 0
+            html << "\">
               <img src=\"#{sectionfile.file_url(:thumb)}\"></img>
             </div>"
           end
@@ -25,8 +22,7 @@ module Adminpanel
           html << '
           <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
           <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-        </div>
-      </div>'
+        </div>'
     end
 
     def elements_html

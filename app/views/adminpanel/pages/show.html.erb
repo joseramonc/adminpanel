@@ -9,11 +9,12 @@
     <div class="widget-body row-fluid">
       <% @resource_instance.sections.each do |component| %>
         <div class="row-fluid">
+          <%= component.render.html_safe %>
           <%= link_to [:edit, component] do %>
-            <%= component.render.html_safe %>
+            <i class="fa fa-pencil"></i>
           <% end %>
         </div>
       <% end %>
     </div><!--/widget-body-->
-  </div> <!-- /widget -->
+  </div><!-- /widget -->
 </div>

@@ -39,7 +39,7 @@ module Adminpanel
     end
 
     def render
-      'desc.'
+      description
     end
 
     protected
